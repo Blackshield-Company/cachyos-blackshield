@@ -1,0 +1,166 @@
+/* ============================================================
+   Blackshield — Firefox content pages (userContent.css)
+   Themes built-in pages: about:newtab, about:home,
+   about:privatebrowsing, reader mode, view-source accents.
+   Web content is NOT touched — this only styles about:* pages.
+   Palette canon: bg #0b0d12 · deep #07090d · fg #c7d0de
+     dim #68738a · crimson #e0555f / #ff6b72 / #8e2f38
+     steel #a9bcd8 · surface #242c3a · bone #dce5f2
+   ============================================================ */
+
+@-moz-document url(about:newtab), url(about:home) {
+  :root {
+    --bs-bg:        #0b0d12;
+    --bs-bg-deep:   #07090d;
+    --bs-fg:        #c7d0de;
+    --bs-fg-dim:    #68738a;
+    --bs-crimson:   #e0555f;
+    --bs-crimson-hi:#ff6b72;
+    --bs-steel:     #a9bcd8;
+    --bs-surface:   #242c3a;
+    --bs-bone:      #dce5f2;
+
+    --newtab-background-color: var(--bs-bg-deep) !important;
+    --newtab-text-primary-color: var(--bs-fg) !important;
+    --newtab-text-secondary-color: var(--bs-fg-dim) !important;
+    --newtab-card-background-color: var(--bs-bg) !important;
+    --newtab-border-primary-color: var(--bs-surface) !important;
+    --newtab-element-hover-color: var(--bs-surface) !important;
+    --newtab-element-active-color: var(--bs-crimson) !important;
+  }
+
+  body {
+    /* blackshield heater-shield art shipped alongside this file in chrome/ */
+    background: var(--bs-bg-deep) url("ntp_background.png") no-repeat center bottom / cover fixed !important;
+    color: var(--bs-fg) !important;
+  }
+
+  /* search box */
+  .search-wrapper .search-handoff-button,
+  .search-wrapper input {
+    background-color: var(--bs-bg) !important;
+    color: var(--bs-fg) !important;
+    border: 1px solid var(--bs-surface) !important;
+    border-radius: 10px !important;
+    caret-color: var(--bs-bone) !important;
+  }
+
+  .search-wrapper .search-handoff-button:focus,
+  .search-wrapper input:focus {
+    border-color: var(--bs-crimson) !important;
+    box-shadow: 0 0 10px rgba(224, 85, 95, 0.4) !important;
+  }
+
+  /* shortcut tiles */
+  .top-site-outer .top-site-inner {
+    background-color: var(--bs-bg) !important;
+    border: 1px solid var(--bs-bg) !important;
+  }
+
+  .top-site-outer:is(:hover, :focus, .active) .top-site-inner {
+    border-color: var(--bs-crimson) !important;
+    box-shadow: 0 0 10px rgba(224, 85, 95, 0.35) !important;
+  }
+
+  .top-site-outer .title {
+    color: var(--bs-fg) !important;
+  }
+
+  .top-site-outer .title .sponsored-label {
+    color: var(--bs-fg-dim) !important;
+  }
+
+  /* section headers */
+  .section-title span,
+  .section-title .section-title-text {
+    color: var(--bs-steel) !important;
+  }
+
+  /* pocket / stories cards */
+  .ds-card,
+  .card-outer {
+    background-color: var(--bs-bg) !important;
+    color: var(--bs-fg) !important;
+    border: 1px solid transparent !important;
+  }
+
+  .ds-card:hover,
+  .card-outer:hover {
+    border-color: var(--bs-crimson) !important;
+  }
+
+  .ds-card .meta .title,
+  .card-outer .title {
+    color: var(--bs-fg) !important;
+  }
+
+  .ds-card .meta .source,
+  .ds-card .meta .excerpt {
+    color: var(--bs-fg-dim) !important;
+  }
+
+  /* personalize / gear panel */
+  .personalize-button,
+  .icon-settings {
+    fill: var(--bs-fg) !important;
+    color: var(--bs-fg) !important;
+  }
+
+  /* context menus on the newtab page */
+  .context-menu {
+    background-color: var(--bs-bg-deep) !important;
+    color: var(--bs-fg) !important;
+    border: 1px solid var(--bs-crimson-lo, #8e2f38) !important;
+  }
+
+  .context-menu .context-menu-item:hover {
+    background-color: var(--bs-surface) !important;
+  }
+}
+
+/* ── Private browsing page ─────────────────────────────── */
+@-moz-document url(about:privatebrowsing) {
+  body {
+    background: linear-gradient(180deg, #07090d 0%, #0b0d12 70%, #160b0e 100%) !important;
+    color: #c7d0de !important;
+  }
+
+  .private-browsing-notice,
+  h1, h2, p {
+    color: #c7d0de !important;
+  }
+
+  a {
+    color: #a9bcd8 !important;
+  }
+
+  button, .button {
+    background-color: #e0555f !important;
+    color: #0b0d12 !important;
+  }
+}
+
+/* ── Reader mode ───────────────────────────────────────── */
+@-moz-document url-prefix("about:reader") {
+  body {
+    --bs-bg: #0b0d12;
+    --bs-fg: #c7d0de;
+  }
+
+  body.dark {
+    background-color: #07090d !important;
+    color: #c7d0de !important;
+  }
+
+  body.dark h1, body.dark h2, body.dark h3 {
+    color: #dce5f2 !important;
+  }
+
+  body.dark a {
+    color: #a9bcd8 !important;
+  }
+
+  body.dark blockquote {
+    border-inline-start-color: #e0555f !important;
+  }
+}

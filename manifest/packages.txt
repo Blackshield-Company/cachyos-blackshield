@@ -1,0 +1,13 @@
+# Blackshield theme pack — install-time dependencies (official repos only)
+# Used by install.sh packages phase and the README quick path:
+#   sudo pacman -S --needed - < manifest/packages.txt
+
+alacritty
+breeze-gtk
+fastfetch
+fish
+git
+github-cli
+kitty
+neovim
+xsettingsd

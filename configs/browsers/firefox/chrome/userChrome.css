@@ -1,0 +1,342 @@
+/* ============================================================
+   Blackshield — Firefox chrome (userChrome.css)
+   Palette canon (matches Hermes blackshield skin + knight):
+     bg #0b0d12 · deep #07090d · inact #0e1119
+     fg #c7d0de · dim #68738a · bone #dce5f2
+     crimson #e0555f · crimson-bright #ff6b72 · crimson-deep #8e2f38
+     steel #a9bcd8 · steel-surface #242c3a · border #3a4456
+     ok #6fca8a · warn #d9a441
+   ============================================================ */
+
+:root {
+  --bs-bg:        #0b0d12;
+  --bs-bg-deep:   #07090d;
+  --bs-bg-inact:  #0e1119;
+  --bs-fg:        #c7d0de;
+  --bs-fg-dim:    #68738a;
+  --bs-crimson:   #e0555f;
+  --bs-crimson-hi:#ff6b72;
+  --bs-crimson-lo:#8e2f38;
+  --bs-steel:     #a9bcd8;
+  --bs-surface:   #242c3a;
+  --bs-border:    #3a4456;
+  --bs-ok:        #6fca8a;
+  --bs-warn:      #d9a441;
+  --bs-bone:      #dce5f2;
+
+  /* Firefox system vars — make native UI (menus, panels, sidebars) follow */
+  --toolbar-bgcolor: var(--bs-bg) !important;
+  --toolbar-color: var(--bs-fg) !important;
+  --lwt-accent-color: var(--bs-bg) !important;
+  --lwt-text-color: var(--bs-fg) !important;
+  --arrowpanel-background: var(--bs-bg-deep) !important;
+  --arrowpanel-color: var(--bs-fg) !important;
+  /* steel border here — a warm accent leaks into the UNFOCUSED urlbar */
+  --arrowpanel-border-color: var(--bs-surface) !important;
+  --panel-separator-color: var(--bs-surface) !important;
+  --urlbar-box-bgcolor: var(--bs-bg-deep) !important;
+  --urlbar-box-text-color: var(--bs-fg) !important;
+  --urlbar-box-hover-bgcolor: var(--bs-surface) !important;
+  --urlbar-box-active-bgcolor: var(--bs-surface) !important;
+  --toolbarbutton-hover-background: rgba(224, 85, 95, 0.25) !important;
+  --toolbarbutton-active-background: rgba(224, 85, 95, 0.45) !important;
+  --lwt-sidebar-background-color: var(--bs-bg-deep) !important;
+  --lwt-sidebar-text-color: var(--bs-fg) !important;
+  --sidebar-background-color: var(--bs-bg-deep) !important;
+  --sidebar-text-color: var(--bs-fg) !important;
+  --tab-loading-fill: var(--bs-crimson) !important;
+  --toolbox-text-color: var(--bs-fg) !important;
+
+  /* Kill leftovers from lightweight themes — these vars paint the
+     urlbar/searchbar border + focus ring */
+  --toolbar-field-background-color: var(--bs-bg-deep) !important;
+  --toolbar-field-color: var(--bs-fg) !important;
+  --toolbar-field-border-color: var(--bs-surface) !important;
+  --toolbar-field-focus-background-color: var(--bs-bg-deep) !important;
+  --toolbar-field-focus-color: var(--bs-fg) !important;
+  --toolbar-field-focus-border-color: var(--bs-crimson) !important;
+  --toolbar-field-highlight-background: rgba(224, 85, 95, 0.25) !important;
+  --toolbar-field-highlight-color: var(--bs-fg) !important;
+  --focus-outline-color: var(--bs-crimson) !important;
+
+  /* ── Nova design-system tokens → Blackshield ─────────────
+     FF155's app menu + panels are nova-token-driven; the violet
+     defaults (hover wash, accent bar, badges, zap separator)
+     leak through unless re-pointed here. */
+  --color-accent-primary: var(--bs-crimson) !important;
+  --color-accent-primary-hover: var(--bs-crimson-hi) !important;
+  --color-accent-primary-active: var(--bs-crimson-lo) !important;
+  --icon-color-accent-primary: var(--bs-crimson) !important;
+  --icon-color-accent-primary-desaturated: var(--bs-crimson-lo) !important;
+  --button-background-color-hover: var(--bs-surface) !important;
+  --button-background-color-active: var(--bs-border) !important;
+  --button-background-color-menu-hover: var(--bs-surface) !important;
+  --button-background-color-menu-active: var(--bs-border) !important;
+  --button-background-color-menu-selected: var(--bs-surface) !important;
+  --toolbarbutton-background-color-hover: rgba(224, 85, 95, 0.25) !important;
+  --toolbarbutton-background-color-active: rgba(224, 85, 95, 0.45) !important;
+  /* the purple→pink→orange Mozilla "zap" brand separator in the app
+     menu, and the nova gradient that replaces it — heraldic crimson */
+  --panel-separator-zap-gradient: linear-gradient(90deg, #8e2f38 0%, #e0555f 52%, #ff6b72 100%) !important;
+  --tab-border-color-accent: linear-gradient(96deg, #8e2f38 20%, #e0555f 80%) !important;
+}
+
+/* ── Main window + toolbox ─────────────────────────────── */
+#main-window,
+#navigator-toolbox {
+  background-color: var(--bs-bg) !important;
+  color: var(--bs-fg) !important;
+}
+
+#navigator-toolbox {
+  border-bottom: 1px solid var(--bs-surface) !important;
+}
+
+/* inactive window chrome — dim like KDE inactive borders */
+#main-window:-moz-window-inactive #navigator-toolbox {
+  background-color: var(--bs-bg-inact) !important;
+  color: var(--bs-fg-dim) !important;
+}
+
+/* ── URL bar — the war-room command line ───────────────── */
+#urlbar {
+  --urlbar-height: 30px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#urlbar:not(:focus-within) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#urlbar-background,
+#searchbar {
+  background-color: var(--bs-bg-deep) !important;
+  color: var(--bs-fg) !important;
+  border: 1px solid var(--bs-surface) !important;
+  border-radius: 8px !important;
+}
+
+#urlbar[focused] > #urlbar-background,
+#searchbar:focus-within {
+  border-color: var(--bs-crimson) !important;
+  box-shadow: 0 0 8px rgba(224, 85, 95, 0.45),
+              inset 0 0 4px rgba(224, 85, 95, 0.15) !important;
+}
+
+.urlbar-input,
+.searchbar-textbox {
+  color: var(--bs-fg) !important;
+  caret-color: var(--bs-bone) !important;
+}
+
+.urlbar-input::placeholder,
+.searchbar-textbox::placeholder {
+  color: var(--bs-fg-dim) !important;
+}
+
+/* urlbar selection: crimson block, dark text */
+.urlbar-input::selection,
+.searchbar-textbox::selection {
+  background: var(--bs-crimson) !important;
+  color: var(--bs-bg) !important;
+}
+
+/* urlbar view dropdown */
+#urlbar-results,
+.urlbarView {
+  background-color: var(--bs-bg-deep) !important;
+  color: var(--bs-fg) !important;
+}
+
+.urlbarView-row[selected] {
+  background-color: var(--bs-surface) !important;
+  color: var(--bs-fg) !important;
+}
+
+.urlbarView-url {
+  color: var(--bs-steel) !important;
+}
+
+.urlbarView-action,
+.urlbarView-row[type="switchtab"] .urlbarView-title::after {
+  color: var(--bs-ok) !important;
+}
+
+/* ── Tabs — blacksteel chrome ──────────────────────────── */
+.tabbrowser-tab {
+  color: var(--bs-fg-dim) !important;
+}
+
+.tabbrowser-tab .tab-background {
+  background-color: var(--bs-bg-inact) !important;
+  border-radius: 8px 8px 0 0 !important;
+  border: 1px solid transparent !important;
+  border-bottom: none !important;
+}
+
+.tabbrowser-tab:hover .tab-background {
+  background-color: var(--bs-surface) !important;
+  color: var(--bs-fg) !important;
+}
+
+/* selected tab: heraldic crimson banner, dark text */
+.tabbrowser-tab[selected] .tab-background {
+  background-color: var(--bs-crimson) !important;
+  border-color: var(--bs-crimson-hi) !important;
+  box-shadow: 0 -2px 0 var(--bs-crimson-hi) inset !important;
+}
+
+.tabbrowser-tab[selected] .tab-label {
+  color: var(--bs-bg) !important;
+  font-weight: 600 !important;
+}
+
+/* unread / attention pulses */
+.tabbrowser-tab[unread]:not([selected]) .tab-label,
+.tabbrowser-tab[attention]:not([selected]) .tab-label {
+  color: var(--bs-warn) !important;
+}
+
+.tab-close-button {
+  fill: currentColor !important;
+}
+
+#TabsToolbar {
+  background-color: var(--bs-bg) !important;
+}
+
+#new-tab-button .toolbarbutton-icon,
+.tabbrowser-tab .tab-icon-image {
+  fill: var(--bs-fg) !important;
+}
+
+/* ── Bookmarks bar ─────────────────────────────────────── */
+#PersonalToolbar {
+  background-color: var(--bs-bg) !important;
+  color: var(--bs-fg) !important;
+  border-top: 1px solid var(--bs-bg-inact) !important;
+}
+
+#PersonalToolbar .toolbarbutton-1,
+.bookmark-item {
+  color: var(--bs-fg) !important;
+  border-radius: 6px !important;
+}
+
+#PersonalToolbar .toolbarbutton-1:hover,
+.bookmark-item:hover {
+  background-color: var(--bs-surface) !important;
+}
+
+/* ── Toolbar buttons / icons ───────────────────────────── */
+toolbarbutton .toolbarbutton-icon,
+.toolbarbutton-badge-stack {
+  fill: var(--bs-fg) !important;
+}
+
+#back-button .toolbarbutton-icon,
+#forward-button .toolbarbutton-icon,
+#reload-button .toolbarbutton-icon {
+  fill: var(--bs-steel) !important;
+}
+
+/* ── Menus & panels ────────────────────────────────────── */
+menupopup,
+panel {
+  --panel-background: var(--bs-bg-deep) !important;
+  --panel-color: var(--bs-fg) !important;
+  background-color: var(--bs-bg-deep) !important;
+  color: var(--bs-fg) !important;
+  border: 1px solid var(--bs-surface) !important;
+}
+
+menuitem:hover,
+menu:hover,
+menuitem[_moz-menuactive],
+menu[_moz-menuactive] {
+  background-color: var(--bs-surface) !important;
+  color: var(--bs-fg) !important;
+  border: 1px solid var(--bs-surface) !important;
+}
+
+menuseparator {
+  border-color: var(--bs-surface) !important;
+}
+
+/* context-menu keyboard accelerators / subtext */
+.menu-accel,
+.menu-iconic-accel {
+  color: var(--bs-fg-dim) !important;
+}
+
+/* ── Sidebar (bookmarks/history) ───────────────────────── */
+#sidebar-box,
+#sidebar-header {
+  background-color: var(--bs-bg-deep) !important;
+  color: var(--bs-fg) !important;
+  border-color: var(--bs-surface) !important;
+}
+
+/* ── Findbar ───────────────────────────────────────────── */
+findbar {
+  background-color: var(--bs-bg-deep) !important;
+  color: var(--bs-fg) !important;
+  border-top: 1px solid var(--bs-crimson-lo) !important;
+}
+
+findbar .findbar-textbox {
+  background-color: var(--bs-bg) !important;
+  color: var(--bs-fg) !important;
+  border: 1px solid var(--bs-surface) !important;
+  caret-color: var(--bs-bone) !important;
+}
+
+findbar .findbar-textbox[status="notfound"] {
+  border-color: var(--bs-crimson) !important;
+  color: var(--bs-crimson) !important;
+}
+
+/* ── Scrollbars (chrome areas) ─────────────────────────── */
+scrollbar {
+  background-color: var(--bs-bg-deep) !important;
+}
+
+scrollbar thumb {
+  background-color: var(--bs-surface) !important;
+  border-radius: 6px !important;
+}
+
+scrollbar thumb:hover {
+  background-color: var(--bs-crimson-lo) !important;
+}
+
+/* ── Tooltips ──────────────────────────────────────────── */
+tooltip {
+  background-color: var(--bs-bg-deep) !important;
+  color: var(--bs-fg) !important;
+  border: 1px solid var(--bs-crimson-lo) !important;
+}
+
+/* ── Notification popups (geolocation, permissions) ───── */
+.notification-popup,
+.popup-notification-body {
+  background-color: var(--bs-bg-deep) !important;
+  color: var(--bs-fg) !important;
+}
+
+.popup-notification-primary-button {
+  background-color: var(--bs-crimson) !important;
+  color: #0b0d12 !important;
+}
+
+/* ── Reader-mode toggle / PiP etc. keep accent ─────────── */
+#reader-mode-button[readeractive] .toolbarbutton-icon {
+  fill: var(--bs-ok) !important;
+}
+
+/* ── Private browsing indicator — heraldic edge ────────── */
+#main-window[privatebrowsingmode] #navigator-toolbox {
+  border-bottom-color: var(--bs-crimson) !important;
+}

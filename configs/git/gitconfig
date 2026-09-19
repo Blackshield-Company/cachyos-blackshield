@@ -1,0 +1,11 @@
+# Blackshield theme pack — git config template
+# Fill in your identity. Reference: install.sh configs phase.
+[user]
+	name = Your Name
+	email = you@example.com
+
+[core]
+	editor = nvim
+
+[init]
+	defaultBranch = main
