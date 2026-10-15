@@ -1,3 +1,5 @@
+![cachyos-blackshield](.github/preview.png)
+
 # cachyos-blackshield ⚫🛡
 
 Blackshield Mercenary — the CachyOS theme pack. Black steel, blood-red cross
