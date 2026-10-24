@@ -30,7 +30,7 @@ For when the desktop should look like it's already won the fight.
 ## Install
 
 ```bash
-git clone https://github.com/synthalorian/cachyos-blackshield.git
+git clone https://github.com/Blackshield-Company/cachyos-blackshield.git
 cd cachyos-blackshield
 ./install.sh          # everything (configs + kde + fonts + wallpapers)
 ```
@@ -69,8 +69,8 @@ install.sh        phase installer
 
 ## Blackshield theme family
 
-- [blackshield-icon-pack](https://github.com/synthalorian/blackshield-icon-pack) — Android icon pack
-- [blackshield-clock-widget](https://github.com/synthalorian/blackshield-clock-widget) — Android clock widget
+- [blackshield-icon-pack](https://github.com/Blackshield-Company/blackshield-icon-pack) — Android icon pack
+- [blackshield-clock-widget](https://github.com/Blackshield-Company/blackshield-clock-widget) — Android clock widget
 
 ---
 
